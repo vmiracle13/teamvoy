@@ -1,9 +1,13 @@
 import React from 'react';
 
 import styled from 'styled-components/macro';
+import { ThemeProvider } from 'styled-components'
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import List from './components/List';
+
+import colors from './styles/colors';
 
 const AppBox = styled.div`
   height: 100%;
@@ -27,9 +31,13 @@ function App() {
     <AppBox>
       <Header />
 
-      <Main>
-        <H1>Pokedex</H1>
-      </Main>
+      <ThemeProvider theme={colors}>
+        <Main>
+          <H1>Pokedex</H1>
+
+          <List />
+        </Main>
+      </ThemeProvider>
 
       <Footer />
     </AppBox>
