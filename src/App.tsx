@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components'
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import List from './components/List';
+import ListBlock from './components/ListBlock';
 
 import colors from './styles/colors';
 
@@ -35,7 +35,7 @@ function App() {
         <Main>
           <H1>Pokedex</H1>
 
-          <List />
+          <ListBlock />
         </Main>
       </ThemeProvider>
 
