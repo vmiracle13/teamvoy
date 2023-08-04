@@ -16,8 +16,10 @@ const Main = styled.main`
 `;
 
 const H1 = styled.h1`
-  margin: 1rem;
-  text-align: center;
+  margin: 1rem auto;
+  padding: 1rem;
+  width: min-content;
+  border: 1px solid orange;
 `;
 
 function App() {
