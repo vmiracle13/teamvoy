@@ -20,9 +20,4 @@ const typeColors = {
   shadow: "#F0F8FF"
 }
 
-export type Colors = "normal" | "fighting" | "poison" |
-  "ground" | "rock" | "bug" | "ghost" | "steel" | "fire" |
-  "water" | "grass" | "electric" | "psychic" | "ice" |
-  "dragon" | "dark" | "fairy" | "unknown" | "shadow";
-
 export default typeColors;
