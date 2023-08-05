@@ -31,6 +31,7 @@ const H1 = styled.h1`
 
 const ItemsBox = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const App = () => (

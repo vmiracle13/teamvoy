@@ -12,7 +12,7 @@ import { LIMIT } from '../constants';
 
 const ListBlockWrapper = styled.div`
   padding: 1rem;
-  flex-basis: 60%;
+  flex-basis: 65%;
 `;
 
 const ListBlock = () => {

@@ -12,6 +12,7 @@ const ItemBox = styled.div`
   margin: 1rem;
   padding: 2rem 1rem;
   min-width: 280px;
+  box-sizing: border-box;
   text-align: center;
   border: 1px solid orange;
 
