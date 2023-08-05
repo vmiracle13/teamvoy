@@ -5,6 +5,7 @@ import styled from 'styled-components/macro';
 import List from './List';
 import MemoLoadMoreButton from './LoadMoreButton';
 import Filter from './Filter';
+import Loading from './Loading';
 
 import { fetchItems, fetchTypes, RootState } from "../store/reducer";
 import { AppDispatch } from '../store/store';
@@ -21,9 +22,11 @@ const ListBlock = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [filter, setFilter] = useState<string>('all');
 
-  const items = useSelector((state: RootState) => state.items.data);
+  const { data: items, status, error } =
+    useSelector((state: RootState) => state.items);
   const totalCount = useSelector((state: RootState) => state.totalCount);
-  const types = useSelector((state: RootState) => state.types.data);
+  const { data: types, error: typesError, status: typesStatus } =
+    useSelector((state: RootState) => state.types);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -56,17 +59,29 @@ const ListBlock = () => {
 
   return (
     <ListBlockWrapper>
-      <Filter types={types} onChange={selectFilter} value={filter} />
-      {filteredList?.length > 0 ? (
-        <>
-          <List list={filteredList} />
+      {typesStatus === 'success' && !typesError && (
+        <Filter types={types} onChange={selectFilter} value={filter} />
+      )}
 
-          < MemoLoadMoreButton isDisabled={isDisabled} loadMore={loadMore} />
-        </>
-      ) : (
-          <h4>Sorry, we can not find a pokemon with such a specific type</h4>
-        )
+      {status === "loading" && (
+        <Loading />
+      )}
+      {status === "success" && (
+        filteredList?.length > 0 ? (
+          <>
+            <List list={filteredList} />
+
+            < MemoLoadMoreButton isDisabled={isDisabled} loadMore={loadMore} />
+          </>
+        ) : (
+            <h4>Sorry, we can not find a pokemon with such a specific type</h4>
+          ))
       }
+      {error && (
+        <h4>Ooops, somethings happened with loading pokemons.<br />
+          Please, reload the page one more time.
+        </h4>
+      )}
     </ListBlockWrapper>
   );
 };
