@@ -11,6 +11,11 @@ export type RootState = {
   error: null | string | undefined,
   totalCount: number,
   selectedItem: ItemType | null | undefined,
+  types: {
+    status: 'loading' | 'pending' | 'success' | 'failed',
+    error: null | string | undefined,
+    data: string[],
+  }
 }
 
 const initialState: RootState = {
@@ -19,6 +24,11 @@ const initialState: RootState = {
   error: null,
   totalCount: 0,
   selectedItem: null,
+  types: {
+    status: "loading",
+    error: null,
+    data: [],
+  }
 };
 
 const fetchItems = createAsyncThunk(
@@ -34,6 +44,16 @@ const fetchItems = createAsyncThunk(
     });
 
     return { items: await Promise.all(list), totalCount: response.data.count };
+  }
+);
+
+const fetchTypes = createAsyncThunk(
+  "items/fetchTypes",
+  async () => {
+    const response =
+      await axios(`https://pokeapi.co/api/v2/type?limit=999`);
+    return response.data.results.map((type:
+      { name: string; url: string }) => type.name).sort();
   }
 );
 
@@ -64,10 +84,22 @@ const itemsSlice = createSlice({
       builder.addCase(fetchItems.rejected, (state, action) => {
         state.status = "failed";
         state.error = action?.error.message;
+      }),
+      builder.addCase(fetchTypes.pending, (state) => {
+        state.types.status = "loading";
+      }),
+      builder.addCase(fetchTypes.fulfilled, (state: RootState, { payload }) => {
+        state.types.status = "success";
+        state.types.data = payload;
+        state.types.error = null;
+      }),
+      builder.addCase(fetchTypes.rejected, (state, action) => {
+        state.types.status = "failed";
+        state.types.error = action?.error.message;
       })
   }
 });
 
 export const { selectItem, unselectItem } = itemsSlice.actions;
 export default itemsSlice.reducer;
-export { fetchItems };
+export { fetchItems, fetchTypes };
