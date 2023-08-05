@@ -2,6 +2,7 @@
   "name": "teamvoy",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/vmiracle13/teamvoy",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@reduxjs/toolkit": "^1.9.5",
@@ -19,6 +20,7 @@
     "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^5.0.0",
     "prettier": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -34,7 +36,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lintjs": "eslint --ext .js,.ts,.tsx src/"
+    "lintjs": "eslint --ext .js,.ts,.tsx src/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
