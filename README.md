@@ -1,3 +1,5 @@
+Information from the authors of React
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -13,11 +15,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `yarn build`
 
@@ -44,3 +41,23 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+
+Information from the author of the application
+
+1. This application is performed accordingly to the provided designs and requirements.
+2. It was possible to use CSS framework for the task like Material UI, however, it could be quite easy in this case.
+3. The components Header and Footer are my initiave because it looks like a part of something, uncompleted work, in my opinion.
+4. Structure of the application. 
+The application has one page. It consists of Header, Footer and main parts. Main part includes filter, list and selected item.
+Filter is set up to get all the types from server and filter the current list using all the possible types. There is one more idea to filter the current list just using the types of the loaded items. I chose the common approach in this task which is close to the real conditions, tasks and projects because it was not possible to implement two ideas at the same time.
+By clicking on the item in the list you can view the specific parameters for a pokemon on the right. By clicking on this separated card you will hide it and unselect item.
+By clicking on the LoadMore button you will get one more portion of the next 12 pokemons.
+Regarding responsive layout, the decision to display the selected item in the bottom of the page, under the whole list is the easiest one in this case and due to the absence of any other requirements in this part. As for me it is better to show modal window with selected item on the mobile phones. But this approach was not impemented as the idea of adaptive styling highlighted in the task text.
+
+As it was mentioned earlier by the authors of React to run the application you need to use script 'start' or the command in your console 'yarn start'.
+
+That is all I wanted to describe.
+
+Enjoy the application! :)
