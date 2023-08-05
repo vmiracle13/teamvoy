@@ -22,64 +22,60 @@ const Table = styled.table`
 `;
 
 type TableType = {
-  attack: number;
-  defense: number;
-  hp: number;
-  specialAttack: number;
-  specialDefense: number;
-  speed: number;
+  stats: Record<string, number>;
   types: string[];
   moves: number;
   weight: number;
 };
 
 const SelectedItemTable = ({
-  hp, attack, defense, speed, specialAttack,
-  specialDefense, types, moves, weight
-}: TableType) => {
-  return (
-    <Table>
-      <tbody>
-        <tr>
-          <td>Type</td>
-          <td>{types.map(type => (<p key={type}>{type}</p>))}</td>
-        </tr>
-        <tr>
-          <td>Attack</td>
-          <td>{attack}</td>
-        </tr>
+  types, moves, weight,
+  stats: {
+    attack, defense, hp, specialAttack,
+    specialDefense, speed
+  }
+}: TableType) => (
+  <Table>
+    <tbody>
+      <tr>
+        <td>Type</td>
+        <td>{types.map(type => (<p key={type}>{type}</p>))}</td>
+      </tr>
+      <tr>
+        <td>Attack</td>
+        <td>{attack}</td>
+      </tr>
 
-        <tr>
-          <td>Defense</td>
-          <td>{defense}</td>
-        </tr>
-        <tr>
-          <td>HP</td>
-          <td>{hp}</td>
-        </tr>
-        <tr>
-          <td>Speed</td>
-          <td>{speed}</td>
-        </tr>
-        <tr>
-          <td>SP Attack</td>
-          <td>{specialAttack}</td>
-        </tr>
-        <tr>
-          <td>SP Defense</td>
-          <td>{specialDefense}</td>
-        </tr>
-        <tr>
-          <td>Weight</td>
-          <td>{weight}</td>
-        </tr>
-        <tr>
-          <td>Moves</td>
-          <td>{moves}</td>
-        </tr>
-      </tbody>
-    </Table>
-  );
-}
+      <tr>
+        <td>Defense</td>
+        <td>{defense}</td>
+      </tr>
+      <tr>
+        <td>HP</td>
+        <td>{hp}</td>
+      </tr>
+      <tr>
+        <td>Speed</td>
+        <td>{speed}</td>
+      </tr>
+      <tr>
+        <td>SP Attack</td>
+        <td>{specialAttack}</td>
+      </tr>
+      <tr>
+        <td>SP Defense</td>
+        <td>{specialDefense}</td>
+      </tr>
+      <tr>
+        <td>Weight</td>
+        <td>{weight}</td>
+      </tr>
+      <tr>
+        <td>Moves</td>
+        <td>{moves}</td>
+      </tr>
+    </tbody>
+  </Table>
+);
 
 export default SelectedItemTable;

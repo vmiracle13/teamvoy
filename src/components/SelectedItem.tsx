@@ -31,7 +31,7 @@ const ExtendedItem = ({ item }: { item: ItemType }) => {
 
   const types = item.types.map(type => type.type.name);
 
-  const stats =
+  const stats: Record<string, number> =
     item.stats.reduce((result, current) => {
       const newName = current.stat.name
         .replace(/-./g, (x: string) => x[1].toUpperCase());
@@ -51,8 +51,8 @@ const ExtendedItem = ({ item }: { item: ItemType }) => {
       <ItemName>{item.name} #{item.id}</ItemName>
 
       <Table
+        stats={stats}
         moves={item?.moves?.length}
-        {...stats}
         types={types}
         weight={item.weight}
       />
