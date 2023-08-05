@@ -6,9 +6,11 @@ import { ItemType } from '../types/types';
 import { LIMIT } from '../constants';
 
 export type RootState = {
-  items: ItemType[],
-  status: 'loading' | 'pending' | 'success' | 'failed',
-  error: null | string | undefined,
+  items: {
+    data: ItemType[],
+    status: 'loading' | 'pending' | 'success' | 'failed',
+    error: null | string | undefined,
+  }
   totalCount: number,
   selectedItem: ItemType | null | undefined,
   types: {
@@ -19,9 +21,11 @@ export type RootState = {
 }
 
 const initialState: RootState = {
-  items: [],
-  status: "loading",
-  error: null,
+  items: {
+    data: [],
+    status: "loading",
+    error: null,
+  },
   totalCount: 0,
   selectedItem: null,
   types: {
@@ -62,7 +66,7 @@ const itemsSlice = createSlice({
   initialState,
   reducers: {
     selectItem: (state: RootState, action: { payload: number }) => {
-      state.selectedItem = state.items.find(item =>
+      state.selectedItem = state.items.data.find(item =>
         item.id === action.payload);
     },
     unselectItem: (state: RootState, action: { payload: number }) => {
@@ -73,17 +77,20 @@ const itemsSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchItems.pending, (state) => {
-      state.status = "loading";
+      state.items.status = "loading";
     }),
       builder.addCase(fetchItems.fulfilled, (state: RootState, action) => {
-        state.status = "success";
-        state.items = [...state.items, ...action.payload.items as ItemType[]];
+        state.items.status = "success";
+        state.items.data = [
+          ...state.items.data,
+          ...action.payload.items as ItemType[]
+        ];
         state.totalCount = action.payload.totalCount;
-        state.error = null;
+        state.items.error = null;
       }),
       builder.addCase(fetchItems.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action?.error.message;
+        state.items.status = "failed";
+        state.items.error = action?.error.message;
       }),
       builder.addCase(fetchTypes.pending, (state) => {
         state.types.status = "loading";

@@ -1,4 +1,4 @@
-import React, { useEffect,  useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 
@@ -21,7 +21,7 @@ const ListBlock = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [filter, setFilter] = useState<string>('all');
 
-  const items = useSelector((state: RootState) => state.items);
+  const items = useSelector((state: RootState) => state.items.data);
   const totalCount = useSelector((state: RootState) => state.totalCount);
   const types = useSelector((state: RootState) => state.types.data);
 
