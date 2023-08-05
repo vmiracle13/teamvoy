@@ -1,11 +1,14 @@
 import React from 'react';
-
+import { Provider } from 'react-redux';
 import styled from 'styled-components/macro';
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ListBlock from './components/ListBlock';
+import SelectedItem from './components/SelectedItemBlock';
+
+import { store } from './store/store';
 
 import colors from './styles/colors';
 
@@ -26,22 +29,30 @@ const H1 = styled.h1`
   border: 1px solid orange;
 `;
 
-function App() {
-  return (
-    <AppBox>
-      <Header />
+const ItemsBox = styled.div`
+  display: flex;
+`;
 
-      <ThemeProvider theme={colors}>
+const App = () => (
+  <AppBox>
+    <Header />
+
+    <ThemeProvider theme={colors}>
+      <Provider store={store}>
         <Main>
           <H1>Pokedex</H1>
 
-          <ListBlock />
-        </Main>
-      </ThemeProvider>
+          <ItemsBox>
+            <ListBlock />
 
-      <Footer />
-    </AppBox>
-  );
-}
+            <SelectedItem />
+          </ItemsBox>
+        </Main>
+      </Provider>
+    </ThemeProvider>
+
+    <Footer />
+  </AppBox>
+);
 
 export default App;

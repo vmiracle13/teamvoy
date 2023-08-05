@@ -18,4 +18,7 @@ export type ItemType = {
     other: object;
     versions: object;
   };
+  moves: any[];
+  stats: any[];
+  weight: number;
 };

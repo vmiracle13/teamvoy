@@ -1,12 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 
+import { selectItem } from "../store/reducer";
+
+import { AppDispatch } from '../store/store';
 import { ItemType } from '../types/types';
 
 const ItemBox = styled.li`
   padding: 2rem 1rem;
   border: 1px solid orange;
   text-align: center;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 16px 0px rgba(255,165,0,1);
+  }
 `;
 
 const ItemName = styled.h3`
@@ -30,8 +38,14 @@ const Button = styled.button<{ type: string }>`
 `;
 
 const Item = ({ item }: { item: ItemType }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const selectOneItem = (id: number) => {
+    dispatch(selectItem(id));
+  };
+
   return (
-    <ItemBox key={item.name}>
+    <ItemBox key={item.name} onClick={() => selectOneItem(item.id)}>
       <img src={`${item.sprites?.front_default} `}
         alt={`${item.name} `} />
 
