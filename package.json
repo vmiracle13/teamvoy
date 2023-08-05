@@ -2,7 +2,7 @@
   "name": "teamvoy",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/vmiracle13/teamvoy",
+  "homepage": "https://vmiracle13.github.io/teamvoy/",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@reduxjs/toolkit": "^1.9.5",
